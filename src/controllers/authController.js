@@ -2,7 +2,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/userModel');
 
-const secret = process.env.JWT_SECRET;
+const secret = 'thisisareallypowerfulsecret';
 const expiry = 3600;
 const saltRounds = 10;
 

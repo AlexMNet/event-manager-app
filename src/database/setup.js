@@ -4,10 +4,11 @@ if (process.env.NODE_ENV === 'development') {
   // LOCAL DATABASE
   module.exports = function() {
     mongoose
-      .connect(process.env.DATABASE_LOCAL, {
+      .connect('mongodb://localhost:27017/eventsApp', {
         useNewUrlParser: true,
         useUnifiedTopology: true,
         useFindAndModify: false,
+        useCreateIndex: true,
       })
       .then(() => {
         // eslint-disable-next-line no-console
@@ -24,11 +25,14 @@ if (process.env.NODE_ENV === 'development') {
   //ATLAS CLOUD DATABASE
   module.exports = function() {
     mongoose
-      .connect(process.env.DATABASE_CLOUD, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-        useFindAndModify: false,
-      })
+      .connect(
+        'mongodb+srv://admin-alex:test123@hotsaucecluster.aupxg.mongodb.net/eventsAppCloud',
+        {
+          useNewUrlParser: true,
+          useUnifiedTopology: true,
+          useFindAndModify: false,
+        }
+      )
       .then(() => {
         // eslint-disable-next-line no-console
         console.log('ATLAS MONGO CONNECTION OPEN!!!');
