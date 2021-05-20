@@ -4,6 +4,7 @@ const morgan = require('morgan');
 
 const app = express();
 const eventRouter = require('./routes/eventRoutes');
+const authRouter = require('./routes/authRoutes');
 
 const port = process.env.PORT || 3000;
 
@@ -27,6 +28,8 @@ dbSetup();
 // Routes
 //==================================================
 
+//Auth Routes
+app.use('/auth', authRouter);
 //Event Routes
 app.use('/events', eventRouter);
 
