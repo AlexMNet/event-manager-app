@@ -30,6 +30,11 @@ const userSchema = new Schema({
     type: String,
     required: [true, 'User must have a password!'],
   },
+  role: {
+    type: String,
+    enum: ['admin', 'regular'],
+    default: 'regular',
+  },
 });
 
 module.exports = mongoose.model('User', userSchema);

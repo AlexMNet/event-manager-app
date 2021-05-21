@@ -20,6 +20,7 @@ exports.registerNewUser = async (req, res) => {
         lastName: req.body.lastName,
         username: req.body.username,
         email: req.body.email,
+        role: req.body.role,
         password: hashedPass,
       });
 
@@ -31,6 +32,7 @@ exports.registerNewUser = async (req, res) => {
           firstName: newUser.firstName,
           lastName: newUser.lastName,
           email: newUser.email,
+          role: newUser.role,
         },
         secret,
         { expiresIn: expiry }
