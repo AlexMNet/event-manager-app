@@ -1,3 +1,4 @@
+const axios = require('axios');
 const Event = require('../models/eventModel');
 
 exports.getAllEvents = async (req, res) => {
@@ -33,7 +34,26 @@ exports.getAllEvents = async (req, res) => {
 
 exports.createEvent = async (req, res) => {
   try {
-    const newEvent = await Event.create(req.body);
+    //Get cateogry from request body
+    const imageCategory = req.body.category;
+
+    //Function to fetch a request using AXIOS and return img URL
+    const getImg = async () => {
+      const response = await axios.get(
+        `https://source.unsplash.com/featured/?${imageCategory}`
+      );
+      return response.request.res.responseUrl;
+    };
+
+    //Get image URL from getImg function
+    const imgURL = await getImg();
+
+    const newEvent = await Event.create({
+      title: req.body.title,
+      cost: req.body.cost,
+      category: req.body.category,
+      image: imgURL,
+    });
 
     res.status(201).json({
       status: 'success',

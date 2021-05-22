@@ -77,6 +77,7 @@ exports.loginUser = async (req, res) => {
             username: foundUser.username,
             firstName: foundUser.firstName,
             lastName: foundUser.lastName,
+            role: foundUser.role,
           },
           secret,
           { expiresIn: expiry }

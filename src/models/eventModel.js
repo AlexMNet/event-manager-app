@@ -22,6 +22,10 @@ const eventSchema = new mongoose.Schema({
     lowercase: true,
     trim: true,
   },
+  image: {
+    type: String,
+    trim: true,
+  },
   createdAt: {
     type: Date,
     default: Date.now(),
